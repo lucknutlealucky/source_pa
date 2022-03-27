@@ -5,7 +5,7 @@ if [ ! -d "/run/mysqld" ]; then
 fi
 
 if [ -d /var/lib/mysql/mysql ]; then
-  echo "[i] MySQL directory already present, skipping creation"
+  echo '[i] MySQL directory already present, skipping creation'
 else
   echo "[i] MySQL data directory not found, creating initial DBs"
 
@@ -27,7 +27,7 @@ else
       return 1
   fi
 
-  cat << EOF > $tfile
+cat << EOF > $tfile
 USE mysql;
 FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY "$MYSQL_ROOT_PASSWORD" WITH GRANT OPTION;
