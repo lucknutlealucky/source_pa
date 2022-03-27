@@ -1,6 +1,7 @@
 #!/bin/sh
 
 if [ ! -d "/run/mysqld" ]; then
+        echo "[i] MySQL /run/mysqld"
         mkdir -p /run/mysqld
         chown -R mysql:mysql /run/mysqld
 fi
