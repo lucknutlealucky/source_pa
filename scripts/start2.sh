@@ -5,9 +5,9 @@ if [ ! -d "/run/mysqld" ]; then
 fi
 
 if [ -d /var/lib/mysql/mysql ]; then
-  echo '[i] MySQL directory already present, skipping creation'
+        echo '[i] MySQL directory already present, skipping creation'
 else
-  echo "[i] MySQL data directory not found, creating initial DBs"
+        echo "[i] MySQL data directory not found, creating initial DBs"
 
   #mysql_install_db --user=root > /dev/null
   chown -R root:root /var/lib/mysql
