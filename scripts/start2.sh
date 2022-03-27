@@ -26,11 +26,9 @@ else
   fi
 
   cat << EOF > $tfile
-USE mysql;
+USE root;
 FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY "$MYSQL_ROOT_PASSWORD" WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-ALTER USER 'root'@'localhost' IDENTIFIED BY '';
 EOF
 
   if [ "$MYSQL_DATABASE" != "" ]; then
@@ -43,7 +41,9 @@ EOF
     fi
   fi
 
+  echo 'FLUSH PRIVILEGES;' >> $tfile
+
+  # run sql in tempfile
   /usr/bin/mysqld --user=root --bootstrap --verbose=0 < $tfile
   rm -f $tfile
 fi
-
