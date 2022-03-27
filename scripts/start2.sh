@@ -27,7 +27,7 @@ else
       return 1
   fi
 
-cat << EOF > $tfile
+  cat << EOF > $tfile
 USE mysql;
 FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY "$MYSQL_ROOT_PASSWORD" WITH GRANT OPTION;
