@@ -60,8 +60,8 @@ EOF
         rm -f $tfile
 fi
 
-echo "[i] Sleeping 3 sec"
-sleep 3
+#echo "[i] Sleeping 3 sec"
+#sleep 3
 
-echo "[i] Starting all process"
-exec /usr/bin/mysqld --user=mysql --console
+#echo "[i] Starting all process"
+#exec /usr/bin/mysqld --user=mysql --console
