@@ -4,21 +4,27 @@ if [ ! -d "/run/mysqld" ]; then
   mkdir -p /run/mysqld
 fi
 
-if [ -d /app/mysql ]; then
+#if [ -d /app/mysql ]; then
+if [ -d /var/lib/mysql/mysql ]; then
   echo "[i] MySQL directory already present, skipping creation"
 else
   echo "[i] MySQL data directory not found, creating initial DBs"
+  
+  chown -R root:root /var/lib/mysql
 
-  mysql_install_db --user=root > /dev/null
+  # Initializing database, mysql_install_db --user=mysql > /dev/null
+  mysql_install_db --user=root --verbose=1 --basedir=/usr --datadir=/var/lib/mysql --rpm > /dev/null
+        
+  #mysql_install_db --user=root > /dev/null
 
-  if [ "$MYSQL_ROOT_PASSWORD" = "" ]; then
-    MYSQL_ROOT_PASSWORD=111111
-    echo "[i] MySQL root Password: $MYSQL_ROOT_PASSWORD"
-  fi
+  #if [ "$MYSQL_ROOT_PASSWORD" = "" ]; then
+  #  MYSQL_ROOT_PASSWORD=111111
+  #  echo "[i] MySQL root Password: $MYSQL_ROOT_PASSWORD"
+  #fi
 
-  MYSQL_DATABASE=${MYSQL_DATABASE:-""}
-  MYSQL_USER=${MYSQL_USER:-""}
-  MYSQL_PASSWORD=${MYSQL_PASSWORD:-""}
+  #MYSQL_DATABASE=${MYSQL_DATABASE:-""}
+  #MYSQL_USER=${MYSQL_USER:-""}
+  #MYSQL_PASSWORD=${MYSQL_PASSWORD:-""}
 
   tfile=`mktemp`
   if [ ! -f "$tfile" ]; then
